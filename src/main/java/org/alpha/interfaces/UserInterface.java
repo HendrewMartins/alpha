@@ -27,6 +27,9 @@ public interface UserInterface {
     //*It searches for user name */
     List<User> getUserByName(String name) throws notFoundMessageExeption;
 
+    //* It will return me the amount */
+    Long countUser();
 
+    List<User> AllUserPagination(int pag, int quant);
     
 }

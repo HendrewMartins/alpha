@@ -13,6 +13,8 @@ import org.alpha.util.PBKDF2Encoder;
 
 import com.oracle.svm.core.annotate.Inject;
 
+import io.quarkus.panache.common.Page;
+
 @ApplicationScoped //!Scoped means that the application will connect to a service o
 public class DefaultUsuarioInterface implements UserInterface{ //It means that all the UserIntercace methods need to
     
@@ -44,24 +46,31 @@ public class DefaultUsuarioInterface implements UserInterface{ //It means that a
     @Transactional
     @Override
     public User updateUser(Long id,User user) throws notFoundMessageExeption {
-        return null;
+        User update_user = getUserById(id);
+        update_user.setUser_email(user.getUser_email());
+        update_user.setUser_name(user.getUser_name());
+        update_user.setRoles(user.getRoles());
+        update_user.setPassword(encoder.encode(user.getPassword()));
+        return update_user;
     }
 
     @Transactional
     @Override
     public void deleteUser(Long id) throws notFoundMessageExeption {
-        
+        userRepository.delete(getUserById(id));
     }
 
     @Transactional
     @Override
     public List<User> allUsers() {
-        return null;
+        return userRepository.listAll();
     }
 
     @Override
     public User getUserById(Long id) throws notFoundMessageExeption {
-        return null;
+        return userRepository.findByIdOptional(id)
+            .orElseThrow(()-> new notFoundMessageExeption("O ID não foi encontrado"));
+        //!here i Settled that my id is optional, it means that if the id is not found i will return a message
     }
 
     @Override
@@ -74,7 +83,15 @@ public class DefaultUsuarioInterface implements UserInterface{ //It means that a
         //Its goind to count on my db how many emails i have
         //Is it going to count everything? No just the parameter i gave which is email
         //If its bigger than 0 it means that there is one email with that id
-    
     }
 
+    @Override
+    public List<User> AllUserPagination(int pag,int quant) {
+        return userRepository.findAll().page(Page.of(pag,quant)).list();
+    }
+
+    @Override
+    public Long countUser() {
+        return userRepository.count();
+    }
 }
