@@ -16,7 +16,7 @@ import com.oracle.svm.core.annotate.Inject;
 import io.quarkus.panache.common.Page;
 
 @ApplicationScoped //!Scoped means that the application will connect to a service o
-public class DefaultUsuarioInterface implements UserInterface{ //It means that all the UserIntercace methods need to
+public class DefaultUserInterface implements UserInterface{ //It means that all the UserIntercace methods need to
     
     //! Why did i created this class? This is need when I avoid that other user reaches my main methods it 
         //!gives strengh to my software
@@ -27,7 +27,7 @@ public class DefaultUsuarioInterface implements UserInterface{ //It means that a
     @Inject
     private final PBKDF2Encoder encoder;
 
-    public DefaultUsuarioInterface(UserRepository userRepository, PBKDF2Encoder encoder) {
+    public DefaultUserInterface(UserRepository userRepository, PBKDF2Encoder encoder) {
         this.userRepository = userRepository;
         this.encoder = encoder;
     }

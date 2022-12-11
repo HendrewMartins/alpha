@@ -6,7 +6,6 @@ import org.alpha.entities.User;
 import org.alpha.exeption.notFoundMessageExeption;
 
 public interface UserInterface {
-    //TODO Metodos
     //
     //*Save
     User saveUser(User user);
