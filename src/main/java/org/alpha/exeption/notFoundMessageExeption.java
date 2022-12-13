@@ -6,7 +6,6 @@ public class notFoundMessageExeption extends Exception {
 
     public notFoundMessageExeption(String message) {
         super(message); //heritage of my Exception super gets Excepetion contructor
-        //and than 
     }
 }
 

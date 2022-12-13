@@ -6,9 +6,11 @@ import java.util.Base64;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
+@ApplicationScoped
 public class PBKDF2Encoder {
     // !Criptgrafy method of my password to save on my db
 
