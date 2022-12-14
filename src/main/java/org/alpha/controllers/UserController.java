@@ -1,10 +1,12 @@
 package org.alpha.controllers;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -52,9 +54,33 @@ public class UserController {
         )
         }
     )
+    //save user
     public Response register(@Valid User user){
         userInterface.saveUser(user);
         return Response.ok(null).build();
     }
 
+    //update user
+    @PUT
+    @RolesAllowed("ADMIN")
+    @Path("/{id}") //!<--front will show me Id than i follow this class
+    @Operation(summary = "Update user",description = "Update user through id")
+    @APIResponses(
+        value = {@APIResponse(
+            responseCode = "200",
+            description = "Sucess",
+            content = @Content(mediaType = "application/json", 
+            schema = @Schema(implementation = User.class)
+        ),
+        @APIResponse(
+            responseCode = "404",
+            description = "ERROR IN UPDATING USER",
+            content = @Content(mediaType = "application/json", 
+            schema = @Schema(implementation = User.class)
+            )
+        )
+        }
+    )
+        
+    )
 }
