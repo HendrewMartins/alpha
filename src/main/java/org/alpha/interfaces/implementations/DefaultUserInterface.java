@@ -79,7 +79,7 @@ public class DefaultUserInterface implements UserInterface{ //It means that all 
     }
 
     public boolean userExists(String email){
-        return(userRepository.count("email",email)>0);
+        return(userRepository.count("user_email",email)>0);
         //Its goind to count on my db how many emails i have
         //Is it going to count everything? No just the parameter i gave it which is email
         //If its bigger than 0 it means that the emails has been used already

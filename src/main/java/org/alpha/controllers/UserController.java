@@ -53,6 +53,7 @@ public class UserController {
         }
     )
     public Response register(@Valid User user){
+        userInterface.saveUser(user);
         return Response.ok(null).build();
     }
 
