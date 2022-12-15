@@ -17,11 +17,11 @@ public class PBKDF2Encoder {
     //www.owasp.org/index.php/Hashing_Java
 
     @ConfigProperty(name = "org.alpha.password.secret")
-    private String secret;
+    String secret;
     @ConfigProperty(name = "org.alpha.password.interaction")
-    private Integer interaction;
+    Integer interaction;
     @ConfigProperty(name = "org.alpha.password.keylenght")
-    private Integer keylenght;
+    Integer keylenght;
 
     public String encode(CharSequence cs) {
         try {
