@@ -24,7 +24,7 @@ public interface UserInterface {
     User getUserById(Long id) throws notFoundMessageExeption;
 
     //*It searches for user name */
-    List<User> getUserByName(String name) throws notFoundMessageExeption;
+    List<User> findUserByName(String name) throws notFoundMessageExeption;
 
     //* It will return me the amount */
     Long countUser();

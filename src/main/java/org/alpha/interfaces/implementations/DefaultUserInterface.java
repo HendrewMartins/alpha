@@ -74,7 +74,7 @@ public class DefaultUserInterface implements UserInterface{ //It means that all 
     }
 
     @Override
-    public List<User> getUserByName(String name) throws notFoundMessageExeption {
+    public List<User> findUserByName(String name) throws notFoundMessageExeption {
         return null;
     }
 
