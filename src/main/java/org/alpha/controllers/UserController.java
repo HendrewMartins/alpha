@@ -6,6 +6,7 @@ import javax.annotation.security.PermitAll;
 import javax.enterprise.context.RequestScoped;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -73,7 +74,7 @@ public class UserController {
 
     @GET
     @PermitAll
-    @Operation(summary = "List an User", description = "List all users")
+    @Operation(summary = "List all Users", description = "List all users")
     @APIResponses(value = {
         @APIResponse(responseCode = "200", description = "Sucess", content = @Content(mediaType = "application/json",schema = @Schema(implementation = User.class))) })
     public List<User> getUsers(){
@@ -99,32 +100,26 @@ public class UserController {
         return null;
     }
 
-    @Delete
+    @DELETE
     @PermitAll
-    @Path("/delete/{id}")
-    @Operation(summary = "Delete a user", description = "Delete User by id")
+    @Path("/{id}")
+    @Operation(summary = "Delete an User", description = "Delete an User by ID")
     @APIResponses(value = {
-        @APIResponse(responseCode = "200", description = "Success", 
-        content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
-        @APIResponse(responseCode = "404", description = "User not found", 
-        content = @Content(mediaType = "application/json", 
-        schema = @Schema(implementation = ExceptionHandler.ErrorResponseBody.class))) })
-    public boolean deleteUserById(@PathParam("id") Long id) throws notFoundMessageExeption{
-            userInterface.deleteUser(id);
+            @APIResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+            @APIResponse(responseCode = "404", description = "Usuário não localizado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionHandler.ErrorResponseBody.class))) })
+    public boolean updateUsuario(@PathParam("id") Long id) throws notFoundMessageExeption {
+        userInterface.deleteUser(id);
         return true;
     }
 
     @GET
     @PermitAll
     @Path("/search-name/{user_name}")
-    @Operation(summary = "Search for a user by name", description = "Search for User by name")
+    @Operation(summary = "Search for User by ID", description = "Search User by Id")
     @APIResponses(value = {
-        @APIResponse(responseCode = "200", description = "Success", 
-        content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
-        @APIResponse(responseCode = "404", description = "User not found", 
-        content = @Content(mediaType = "application/json", 
-        schema = @Schema(implementation = ExceptionHandler.ErrorResponseBody.class))) })
-    public List<User> getUserByName(@PathParam("user_name") String name) throws notFoundMessageExeption{
-            return userInterface.findUserByName(name);
+            @APIResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+            @APIResponse(responseCode = "404", description = "Usuário não localizado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionHandler.ErrorResponseBody.class))) })
+    public List<User> getUsuarioByNome(@PathParam("user_name") String name)  throws notFoundMessageExeption {
+        return userInterface.findUserByName(name);
     }
 }
