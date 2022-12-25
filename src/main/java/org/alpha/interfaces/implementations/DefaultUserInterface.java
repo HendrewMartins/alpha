@@ -75,7 +75,7 @@ public class DefaultUserInterface implements UserInterface{ //It means that all 
 
     @Override
     public List<User> findUserByName(String name) throws notFoundMessageExeption {
-        return null;
+        return userRepository.FindByUserName(name);
     }
 
     public boolean userExists(String email){

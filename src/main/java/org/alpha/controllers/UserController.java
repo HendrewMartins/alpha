@@ -115,7 +115,7 @@ public class UserController {
     @GET
     @PermitAll
     @Path("/search-name/{user_name}")
-    @Operation(summary = "Search for User by ID", description = "Search User by Id")
+    @Operation(summary = "Search for User by name", description = "Search User by name")
     @APIResponses(value = {
             @APIResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
             @APIResponse(responseCode = "404", description = "Usuário não localizado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionHandler.ErrorResponseBody.class))) })
