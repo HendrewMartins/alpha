@@ -27,7 +27,6 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-import com.oracle.svm.core.annotate.Delete;
 import com.oracle.svm.core.annotate.Inject;
 
 @Path("/api/user")

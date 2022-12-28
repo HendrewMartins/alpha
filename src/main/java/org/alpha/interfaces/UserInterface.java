@@ -2,6 +2,9 @@ package org.alpha.interfaces;
 
 import java.util.List;
 
+import javax.ws.rs.core.Response;
+
+import org.alpha.dto.UserLogin;
 import org.alpha.entities.User;
 import org.alpha.exeption.notFoundMessageExeption;
 
@@ -29,6 +32,11 @@ public interface UserInterface {
     //* It will return me the amount */
     Long countUser();
 
+    ///*List user using pagination wich is a limited number of results */
     List<User> AllUserPagination(int pag, int quant);
+
+    Response generateToken(UserLogin userLogin) throws Exception;
+
+    boolean userExists(String user_name) throws Exception;
     
 }
