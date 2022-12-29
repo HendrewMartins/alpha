@@ -116,10 +116,7 @@ public class DefaultUserInterface implements UserInterface { // It means that al
         try {
             if (user != null && verifyCryptPassword(user, userLogin)) {
                 try {
-                    return Response
-                            .ok(new Token(
-                                    TokenUtil.generateToken(user.getUser_email(), user.getRoles(), duration, issuer)))
-                            .build();
+                    return Response.ok(new Token(TokenUtil.generateToken(user.getUser_email(), user.getRoles(), duration, issuer))).build();
                 } catch (Exception e) {
                     return Response.status(Status.UNAUTHORIZED).build();
                 }

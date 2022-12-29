@@ -3,6 +3,7 @@ package org.alpha.controllers;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
@@ -58,7 +59,7 @@ public class UserController {
     }
 
     @PUT
-    @PermitAll
+    @RolesAllowed("ADMIN")
     @Path("/{id}")
     @Operation(summary = "Update an User", description = "Update User via Id")
     @APIResponses(value = {
@@ -72,7 +73,7 @@ public class UserController {
     }
 
     @GET
-    @PermitAll
+    @RolesAllowed("ADMIN")
     @Operation(summary = "List all Users", description = "List all users")
     @APIResponses(value = {
         @APIResponse(responseCode = "200", description = "Sucess", content = @Content(mediaType = "application/json",schema = @Schema(implementation = User.class))) })
@@ -81,7 +82,7 @@ public class UserController {
     }
     
     @GET
-    @PermitAll
+    @RolesAllowed("ADMIN")
     @Path("/{id}")
     @Operation(summary = "Search for a user", description = "Search for User by id")
     @APIResponses(value = {
@@ -100,7 +101,7 @@ public class UserController {
     }
 
     @DELETE
-    @PermitAll
+    @RolesAllowed("ADMIN")
     @Path("/{id}")
     @Operation(summary = "Delete an User", description = "Delete an User by ID")
     @APIResponses(value = {
@@ -112,7 +113,7 @@ public class UserController {
     }
 
     @GET
-    @PermitAll
+    @RolesAllowed("ADMIN")
     @Path("/search-name/{user_name}")
     @Operation(summary = "Search for User by name", description = "Search User by name")
     @APIResponses(value = {

@@ -33,7 +33,7 @@ public class LoginController {
     @PermitAll
     @Path("/auth")
     public Response login(@Valid UserLogin userLogin ) throws Exception{
-        return null;
+        return userInterface.generateToken(userLogin);
     }
     
     
