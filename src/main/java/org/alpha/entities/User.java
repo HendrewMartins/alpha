@@ -47,7 +47,7 @@ public class User {
 
     @NotNull
     @Column(name="password")
-    private String password;
+    private String user_password;
 
     @NotNull
     @Column(name="roles")

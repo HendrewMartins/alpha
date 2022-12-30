@@ -49,7 +49,7 @@ public class DefaultUserInterface implements UserInterface { // It means that al
     @Override
     public User saveUser(User user) {
         if (!userExists(user.getUser_email())) {
-            user.setPassword(encoder.encode(user.getPassword()));
+            user.setUser_password(encoder.encode(user.getUser_password()));
             userRepository.persistAndFlush(user);
             return user; // Hibernate will return me the user automatically
         }
@@ -63,7 +63,7 @@ public class DefaultUserInterface implements UserInterface { // It means that al
         update_user.setUser_email(user.getUser_email());
         update_user.setUser_name(user.getUser_name());
         update_user.setRoles(user.getRoles());
-        update_user.setPassword(encoder.encode(user.getPassword()));
+        update_user.setUser_password(encoder.encode(user.getUser_password()));
         return update_user;
     }
 
@@ -119,6 +119,7 @@ public class DefaultUserInterface implements UserInterface { // It means that al
                     return Response.ok(new Token(TokenUtil.generateToken(user.getUser_email(), user.getRoles(), duration, issuer))).build();
                 } catch (Exception e) {
                     return Response.status(Status.UNAUTHORIZED).build();
+
                 }
             } else {
                 return Response.status(Status.UNAUTHORIZED).build();
@@ -130,7 +131,7 @@ public class DefaultUserInterface implements UserInterface { // It means that al
     }
 
     public boolean verifyCryptPassword(User user, UserLogin userLogin) {
-        return user.getPassword().equals(encoder.encode(userLogin.getPassword()));
+        return user.getUser_password().equals(encoder.encode(userLogin.getUser_password()));
         // encoder a classe from the PBKDF2Encoder file
     }
 }
